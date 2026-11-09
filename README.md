@@ -1,19 +1,3 @@
-# پورتفولیوی رسول خواجه میرزایی
+# Rasoul Khajehmirzaei Portfolio
 
-پورتفولیوی فارسی و راست‌به‌چپ با React، TypeScript و Vite.
-
-## اجرا و ساخت
-
-```sh
-npm ci
-npm run dev
-npm run build
-```
-
-## انتشار
-
-این پروژه برای مخزن `Rasin-official.github.io` آماده شده است. در Settings → Pages، منبع انتشار را GitHub Actions انتخاب کنید. با هر تغییر روی شاخهٔ `main`، خروجی جدید ساخته و منتشر می‌شود.
-
-فقط پوشهٔ `dist` در سایت نمایش داده می‌شود؛ منابع قابل‌ویرایش در `src` هستند. اطلاعات اصلی در `src/data/portfolio.ts` قرار دارد.
-
-مجوز فونت و منابع لوگوها در پوشهٔ `public` نگهداری شده‌اند.
+پورتفولیوی فارسی با React، TypeScript و Vite.
