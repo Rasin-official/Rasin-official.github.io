@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/Vazirmatn-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-cream: #faf3e7;
+  --color-cream-2: #f4ead7;
+  --color-paper: #fffdf7;
+  --color-ink: #1a1512;
+  --color-orange: #ff5a2d;
+  --color-yellow: #ffc53d;
+  --color-green: #52b366;
+  --color-blue: #6c9bff;
+  --color-pink: #ff9ec7;
+
+  --font-display: "Vazirmatn", Tahoma, sans-serif;
+  --font-body: "Vazirmatn", Tahoma, sans-serif;
+  --font-mono: "Vazirmatn", Tahoma, sans-serif;
+
+  --shadow-hard-xs: 2px 2px 0 0 #1a1512;
+  --shadow-hard-sm: 3px 3px 0 0 #1a1512;
+  --shadow-hard: 5px 5px 0 0 #1a1512;
+  --shadow-hard-lg: 8px 8px 0 0 #1a1512;
+  --shadow-hard-xl: 12px 12px 0 0 #1a1512;
+
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-spin-slow: spin-slow 14s linear infinite;
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-blink: blink 1.4s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes spin-slow {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(var(--float-rot, 0deg)); }
+    50% { transform: translateY(-12px) rotate(var(--float-rot, 0deg)); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  background-image: radial-gradient(rgba(26, 21, 18, 0.07) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  color: var(--color-ink);
+  font-weight: 400;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+}
+
+/* ---------- marker highlight (wrap-safe) ---------- */
+.mark {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-color: var(--mark-color, var(--color-yellow));
+  padding: 0.04em 0.16em;
+  border-radius: 0.55em 0.75em 0.5em 0.7em / 0.65em 0.55em 0.7em 0.55em;
+}
+
+/* ---------- wiggle on hover ---------- */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-4deg) scale(1.04); }
+  50% { transform: rotate(4deg) scale(1.08); }
+}
+.wiggle-hover:hover {
+  animation: wiggle 0.45s ease-in-out infinite;
+}
+
+/* ---------- chunky button mechanics ---------- */
+.btn-chunky {
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-chunky:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hard-lg);
+}
+.btn-chunky:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-hard-xs);
+}
+
+/* ---------- card hover pop ---------- */
+.card-pop {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card-pop:hover {
+  transform: translate(-4px, -4px) rotate(var(--pop-rot, -1deg));
+  box-shadow: var(--shadow-hard-xl);
+}
+
+/* ---------- dashed connector line ---------- */
+.dashed-line {
+  background-image: linear-gradient(to bottom, var(--color-ink) 55%, transparent 45%);
+  background-size: 2px 12px;
+  background-repeat: repeat-y;
+}
+
+/* ---------- scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink);
+  border-radius: 8px;
+  border: 3px solid var(--color-cream);
+}
+
+section {
+  scroll-margin-top: 96px;
+}
+
+/* Persian typography: keep connected letters and give diacritics breathing room. */
+:lang(fa) [class*="tracking-"] { letter-spacing: normal; }
+:lang(fa) h1 { line-height: 1.5; }
+:lang(fa) h2 { line-height: 1.65; }
+:lang(fa) h3 { line-height: 1.65; }
+:lang(fa) p { line-height: 1.95; }
+:lang(fa) .font-mono { font-weight: 500; }
+:lang(fa) a.font-display, :lang(fa) button.font-display { font-weight: 600; }
+:lang(fa) .leading-none, :lang(fa) .leading-tight { line-height: 1.65; }
+:lang(fa) .leading-snug { line-height: 1.85; }
+.marquee-track { direction: ltr; }
+.marquee-track > span { direction: rtl; }
+.latin { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid var(--color-orange); outline-offset: 5px; }
+@media (max-width: 380px) {
+  #tools .tool-grid { grid-template-columns: minmax(0, 1fr); }
+  #social h2 { font-size: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
